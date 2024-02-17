@@ -35,6 +35,14 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController textEditingController = TextEditingController();
 
   void speak(String text) async {
+    await flutterTts.setIosAudioCategory(
+        IosTextToSpeechAudioCategory.ambient,
+        [
+          IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+          IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+          IosTextToSpeechAudioCategoryOptions.mixWithOthers
+        ],
+        IosTextToSpeechAudioMode.voicePrompt);
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1);
     await flutterTts.speak(text);
